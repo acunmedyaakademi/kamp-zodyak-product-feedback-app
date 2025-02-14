@@ -1,7 +1,7 @@
 export default function FeedbackDetail() {
-    return (
-        <>
-            <h1>FeedbackDetail</h1>
-        </>
-    )
+  return (
+    <>
+      <h1>FeedbackDetail</h1>
+    </>
+  )
 }

@@ -1,8 +1,8 @@
+import "../../reset.css"
 export default function NewFeedback() {
-    return (
-        <>
-        
-        <h1>NewFeedback</h1>
-        </>
-    )
+  return (
+    <>
+      
+    </>
+  )
 }
