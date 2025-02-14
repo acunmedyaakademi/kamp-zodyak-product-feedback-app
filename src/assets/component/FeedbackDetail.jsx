@@ -1,9 +1,9 @@
 import '../css/feedback-detail.css';
-import { Data } from '../../App.jsx';
+import { DataContext } from '../../App.jsx';
 import { useContext } from 'react';
 
 export default function FeedbackDetail() {
-  const { data } = useContext(Data)
+  const { data } = useContext(DataContext)
   return (
     <div className='feedback-detail-container'>
       <div className="feedback-detail-header">
