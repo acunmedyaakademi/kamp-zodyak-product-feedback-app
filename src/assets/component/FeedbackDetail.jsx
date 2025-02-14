@@ -80,7 +80,6 @@ export default function FeedbackDetail() {
           <button>Post Comment</button>
         </div>
       </div>
-
     </div>
   )
 }
