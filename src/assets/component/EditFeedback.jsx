@@ -1,5 +1,5 @@
 export default function EditFeedback() {
-    return (
-        <h1>EditFeedback</h1>
-    )
+  return (
+    <h1>EditFeedback</h1>
+  )
 }

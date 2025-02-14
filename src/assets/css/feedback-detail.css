@@ -1,0 +1,31 @@
+body {
+  background: #F7F8FD;
+  margin:24px 24px 88px ;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  a {
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 18.79px;
+    letter-spacing: 0px;
+  }
+  a:first-child {
+    color: #647196;
+    background: url(public/img/go-back-icon.svg) no-repeat 1px;
+    padding-left: 15px;
+  }
+  a:last-child {
+    color: #647196;
+    background: #4661E6;
+    padding-block: 10px;
+    width: 119px;
+    text-align: center;
+    color: #FFF;
+    border-radius: 10px;
+  }
+ 
+}
