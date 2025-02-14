@@ -10,7 +10,7 @@ const routers = [
         component:<Home />
     },
     {
-        url:"/feedback/detail",
+        url:"/feedback-detail",
         component:<FeedbackDetail />
     },
     {
