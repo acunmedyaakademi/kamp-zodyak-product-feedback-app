@@ -1,8 +1,8 @@
-import FeedbackDetail from "./component/FeedbackDetail"
-import FeedbackDetail from "./component/Home"
-import FeedbackDetail from "./component/NewFeedback"
-import FeedbackDetail from "./component/Roadmap"
-import FeedbackDetail from "./component/EditFeedback"
+import FeedbackDetail from "./assets/component/FeedbackDetail"
+import Home from "./assets/component/Home"
+import NewFeedback from "./assets/component/NewFeedback"
+import Roadmap from "./assets/component/Roadmap"
+import EditFeedback from "./assets/component/EditFeedback"
 
 const routers = [
     {
