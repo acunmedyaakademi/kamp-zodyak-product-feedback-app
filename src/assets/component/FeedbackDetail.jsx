@@ -5,8 +5,8 @@ import { useContext } from 'react';
 export default function FeedbackDetail() {
   const { data } = useContext(Data)
   return (
-    <div className='container'>
-      <div className="header">
+    <div className='feedback-detail-container'>
+      <div className="feedback-detail-header">
         <a href="/">Go back</a>
         <a href="#/">Edit Feedback</a>
       </div>
