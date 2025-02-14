@@ -22,7 +22,7 @@ export default function App() {
   const page = getPage(url);
   return (
     <>
-      <DataContext.Provider value={{ data, setData, currentUser}}>
+      <DataContext.Provider value={{ data, setData, currentUser, setCurrentUser}}>
         {page.component}
       </DataContext.Provider>
     </>

@@ -6,13 +6,19 @@ import { Header } from './header.jsx';
 
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const [upvotes, setUpvotes] = useState(null);
-  const { data } = useContext(DataContext)
-  const { productRequests } = data || []
+  const { data, setData, currentUser, setCurrentUser } = useContext(DataContext)
 
 
-  function handleUpvotes(upvotes) {
-    setUpvotes(upvotes + 1)
+  function handleUpvotes(id) {
+    if (currentUser.myUpvotes.includes(id)) {
+      data.find(x => x.id === id).upvotes--;
+      currentUser.myUpvotes = currentUser.myUpvotes.filter(x => x !== id);
+    }else {
+      data.find(x => x.id === id).upvotes++;
+      currentUser.myUpvotes.push(id);
+    }
+    setCurrentUser({...currentUser});
+    setData([...data]);
   }
 
   return (
@@ -25,16 +31,16 @@ export default function Home() {
         </select>
         <button>+ Add Feedack</button>
       </div>
-      {productRequests?.length  ? 
+      {data?.length ? 
         <div className="feedbacks-list">
-          {productRequests?.map((x,i) => 
+          {data?.map((x,i) => 
           <div className="feedback-item" key={i}>
             <div className='feedback-content'>
               <h3>{x.title}</h3>
               <p>{x.description}</p>
               <span className='category'>{x.category}</span>
               <div className="home-feedback-footer">
-                <span onClick={() => handleUpvotes(x.upvotes)}><img src="/public/img/up-icon.svg" alt="" />{x.upvotes}</span>
+                <span onClick={() => handleUpvotes(x.id)}><img src="/public/img/up-icon.svg" alt="" />{x.upvotes}</span>
                 <span><img src="/public/img/comments-icon.svg" alt="" />{x.comments ? (x.comments?.length + x.comments?.map(y => y.replies?.length || 0).reduce((a, b) => a + b, 0)) : 0}</span>
               </div>
             </div>
