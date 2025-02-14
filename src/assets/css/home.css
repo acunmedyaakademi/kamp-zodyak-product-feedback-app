@@ -1,0 +1,35 @@
+.input-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #373F68;
+  padding-inline: 24px;
+  h5 {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 18.79px;
+    letter-spacing: 0px;
+    text-align: right;
+    color: #F2F4FE;
+  }
+  select {
+    background: inherit;
+    color: #FFF;
+    width: 70px;
+    margin-right: auto;
+  }
+  button {
+    background: #AD1FEA;
+    border: none;
+    color: #FFF;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 18.79px;
+    letter-spacing: 0px;
+    padding-block: 10px;
+    width: 134px;
+
+
+  }
+}
