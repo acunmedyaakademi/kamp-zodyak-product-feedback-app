@@ -4,15 +4,18 @@ import "../css/newfeedback.css"
 export default function NewFeedback() {
   return (
     <>
-      <div className="feedback-part">
-        <div>
-          <button className="addnewBtn">
-            <img src="\img\plus-icon.svg" alt="" />
+      <div className="feedback-container">
+        <div className="feedback-header">
+          <button  className="gobackBtn">  <img src="\img\left-blue-icon.svg" alt="" />Go Back
           </button>
+
         </div>
 
-        <div>
-          <form className="content">
+        <div className="feedback-form">
+          <form >
+            <button className="addnewBtn">
+              <img src="\img\plus-icon.svg" alt="" />
+            </button>
 
             <div  >
               <h2>Create New Feedback</h2>
