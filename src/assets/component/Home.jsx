@@ -1,23 +1,63 @@
 import '../css/home.css';
-import { Data } from '../../App.jsx';
+import { DataContext } from '../../App.jsx';
 import { useContext, useState } from 'react';
 import { Header } from './header.jsx';
 
 
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const { data } = useContext(Data)
+  const { data, setData, currentUser, setCurrentUser } = useContext(DataContext)
+
+
+  function handleUpvotes(id) {
+    if (currentUser.myUpvotes.includes(id)) {
+      data.find(x => x.id === id).upvotes--;
+      currentUser.myUpvotes = currentUser.myUpvotes.filter(x => x !== id);
+    }else {
+      data.find(x => x.id === id).upvotes++;
+      currentUser.myUpvotes.push(id);
+    }
+    setCurrentUser({...currentUser});
+    setData([...data]);
+  }
 
   return (
-    <div className="container">
+    <div className="home-container">
       <Header selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
       <div className="input-group">
-        <h5>Sort by: </h5>
+        <h5>Sort by :</h5>
         <select name="" id="">
           <option value="">Most Upvotes</option>
         </select>
         <button>+ Add Feedack</button>
       </div>
+      {data?.length ? 
+        <div className="feedbacks-list">
+          {data?.map((x,i) => 
+          <div className="feedback-item" key={i}>
+            <div className='feedback-content'>
+              <h3>{x.title}</h3>
+              <p>{x.description}</p>
+              <span className='category'>{x.category}</span>
+              <div className="home-feedback-footer">
+                <span onClick={() => handleUpvotes(x.id)}><img src="/public/img/up-icon.svg" alt="" />{x.upvotes}</span>
+                <span><img src="/public/img/comments-icon.svg" alt="" />{x.comments ? (x.comments?.length + x.comments?.map(y => y.replies?.length || 0).reduce((a, b) => a + b, 0)) : 0}</span>
+              </div>
+            </div>
+          </div>
+          )}
+        </div>
+        : 
+        <div className='not-found'>
+          <div className="home-not-found">
+            <img src="/public/img/no-feedback-img.png" alt="" />
+            <h3>There is no feedback yet.</h3>
+            <p>Got a suggestion? Found a bug that needs to be squashed? We love hearing about new ideas to improve our app.</p>
+            <button>+ Add Feedback</button>
+          </div>
+
+        </div>
+      }
     </div>
   )
 }

@@ -1,11 +1,10 @@
 import { useContext } from 'react';
-import { Data } from '../../App.jsx';
+import { DataContext } from '../../App.jsx';
 
 
 
 export function Header({ selectedCategory, setSelectedCategory}) {
-  const {data} = useContext(Data)
-  console.log(data);
+  const {data} = useContext(DataContext)
   return(
     <>
       <h1>Header</h1>
