@@ -28,6 +28,9 @@
     line-height: 18.79px;
     letter-spacing: 0px;
     padding-left: 4px;
+    option {
+      color: #373F68;
+    }
   }
   select:focus {
     outline: none;
@@ -70,6 +73,7 @@
     }
     .category {
       background: #F2F4FF;
+      text-transform: capitalize;
       border-radius: 10px;
       padding: 6px 16px;
       font-weight: 600;

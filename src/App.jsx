@@ -3,7 +3,7 @@ import { getPage } from "./helper";
 export const DataContext = createContext(null);
 
 export default function App() {
-  const [data, setData] = useState("");
+  const [data, setData] = useState([]);
   const [currentUser, setCurrentUser] = useState("")
   const [url, setUrl] = useState(location.hash.substring(1) || "/");
 
@@ -23,7 +23,7 @@ export default function App() {
   return (
     <>
       <DataContext.Provider value={{ data, setData, currentUser, setCurrentUser}}>
-        {page.component}
+        {data && page.component}
       </DataContext.Provider>
     </>
   )

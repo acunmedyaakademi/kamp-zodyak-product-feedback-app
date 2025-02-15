@@ -29,5 +29,5 @@ const routers = [
 ]
 
 export function getPage(url) {
-    return routers.find((router) => router.url === url) ?? <h1>404 NOT FOUND!</h1>
+    return routers.findLast(router => url.startsWith(router.url)) ?? <h1>404 NOT FOUND!</h1>
 }
