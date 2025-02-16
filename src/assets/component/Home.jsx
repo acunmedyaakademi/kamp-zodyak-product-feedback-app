@@ -2,6 +2,7 @@ import '../css/home.css';
 import { DataContext } from '../../App.jsx';
 import { useContext, useEffect, useState } from 'react';
 import { Header } from './header.jsx';
+import { X } from 'lucide-react';
 
 
 export default function Home() {
@@ -55,6 +56,10 @@ export default function Home() {
     setData(sortedData);
   }
 
+  const filteredData = selectedCategory === "All" 
+    ? data 
+    : data.filter(x => x.category.toLowerCase().includes(selectedCategory.toLowerCase()))
+
 
   return (
     <div className="home-container">
@@ -73,9 +78,11 @@ export default function Home() {
         </select>
         <button onClick={() => window.location.hash = "#/new-feedback"}>+ Add Feedack</button>
       </div>
-      {data?.length ?
+      {filteredData?.length ?
         <div className="feedbacks-list">
-          {data?.map((x, i) =>
+          
+          {
+          filteredData.map((x, i) =>
             responsive ?
               (<div className="feedback-item" key={i}>
                 <div className='feedback-content'>
