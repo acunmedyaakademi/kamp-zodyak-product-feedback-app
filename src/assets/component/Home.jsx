@@ -12,7 +12,7 @@ export default function Home() {
 
   useEffect(() => {
     const handleResize = () => {
-      setResponsive(window.innerWidth < 768);
+      setResponsive(window.innerWidth < 525);
     };
 
     window.addEventListener("resize", handleResize);
@@ -26,11 +26,11 @@ export default function Home() {
     if (currentUser.myUpvotes.includes(id)) {
       data.find(x => x.id === id).upvotes--;
       currentUser.myUpvotes = currentUser.myUpvotes.filter(x => x !== id);
-    }else {
+    } else {
       data.find(x => x.id === id).upvotes++;
       currentUser.myUpvotes.push(id);
     }
-    setCurrentUser({...currentUser});
+    setCurrentUser({ ...currentUser });
     setData([...data]);
   }
 
@@ -43,9 +43,9 @@ export default function Home() {
 
     const sortedData = data.sort((a, b) => {
       if (e.target.value === 'Most Upvotes') {
-        return b.upvotes - a.upvotes; 
+        return b.upvotes - a.upvotes;
       } else if (e.target.value === 'Least Upvotes') {
-        return a.upvotes - b.upvotes; 
+        return a.upvotes - b.upvotes;
       }
       return 0;
     });
@@ -53,7 +53,7 @@ export default function Home() {
     setData(sortedData);
   }
 
-  
+
   return (
     <div className="home-container">
       <Header selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
@@ -65,11 +65,10 @@ export default function Home() {
         </select>
         <button onClick={() => window.location.hash = "#/new-feedback"}>+ Add Feedack</button>
       </div>
-      {data?.length ? 
+      {data?.length ?
         <div className="feedbacks-list">
-          {data?.map((x,i) => 
-          {responsive ?
-           (<div className="feedback-item"  key={i}>
+          {data?.map((x, i) =>
+          (<div className="feedback-item" key={i}>
             <div className='feedback-content'>
               <h3>{x.title}</h3>
               <p>{x.description}</p>
@@ -79,16 +78,10 @@ export default function Home() {
                 <span onClick={() => openFeedback(x)}><img src="/public/img/comments-icon.svg" alt="" />{x.comments ? (x.comments?.length + x.comments?.map(y => y.replies?.length || 0).reduce((a, b) => a + b, 0)) : 0}</span>
               </div>
             </div>
-          </div>) : (
-            <div>
-              
-            </div>
-          )
-           }
-          
+          </div>)
           )}
         </div>
-        : 
+        :
         <div className='not-found'>
           <div className="home-not-found">
             <img src="/public/img/no-feedback-img.png" alt="" />
