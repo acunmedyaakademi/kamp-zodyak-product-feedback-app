@@ -9,7 +9,7 @@ export default function Home() {
   const { data, setData, currentUser, setCurrentUser } = useContext(DataContext)
   const [sortBy, setSortBy] = useState("Most Upvotes");
   const [responsive, setResponsive] = useState(window.innerWidth < 525)
-  
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -61,10 +61,10 @@ export default function Home() {
       <Header selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
       <div className="input-group">
         {responsive &&
-         (<div>
-          <img src="/public/img/suggestion-icon.svg" alt="" />
-          <span>{data.length}</span>
-         </div>)
+          (<div>
+            <img src="/public/img/suggestion-icon.svg" alt="" />
+            <span>{data.length}</span>
+          </div>)
         }
         <h5>Sort by :</h5>
         <select name="" onChange={handleSort}>
@@ -75,25 +75,25 @@ export default function Home() {
       </div>
       {data?.length ?
         <div className="feedbacks-list">
-          {data?.map((x,i) => 
-          {responsive ?
-           (<div className="feedback-item"  key={i}>
-            <div className='feedback-content'>
-              <h3>{x.title}</h3>
-              <p>{x.description}</p>
-              <span className='category'>{x.category}</span>
-              <div className="home-feedback-footer">
-                <span onClick={() => handleUpvotes(x.id)}><img src="/public/img/up-icon.svg" alt="" />{x.upvotes}</span>
-                <span onClick={() => openFeedback(x)}><img src="/public/img/comments-icon.svg" alt="" />{x.comments ? (x.comments?.length + x.comments?.map(y => y.replies?.length || 0).reduce((a, b) => a + b, 0)) : 0}</span>
-              </div>
-            </div>
-          </div>) : (
-            <div>
-              
-            </div>
-          )
-           }
-          
+          {data?.map((x, i) =>
+            responsive ?
+              (<div className="feedback-item" key={i}>
+                <div className='feedback-content'>
+                  <h3>{x.title}</h3>
+                  <p>{x.description}</p>
+                  <span className='category'>{x.category}</span>
+                  <div className="home-feedback-footer">
+                    <span onClick={() => handleUpvotes(x.id)}><img src="/public/img/up-icon.svg" alt="" />{x.upvotes}</span>
+                    <span onClick={() => openFeedback(x)}><img src="/public/img/comments-icon.svg" alt="" />{x.comments ? (x.comments?.length + x.comments?.map(y => y.replies?.length || 0).reduce((a, b) => a + b, 0)) : 0}</span>
+                  </div>
+                </div>
+              </div>) : (
+                <div>
+
+                </div>
+              )
+
+
           )}
         </div>
         :
