@@ -29,19 +29,19 @@ export default function FeedbackDetail() {
 
   useEffect(() => {
     const feedbackId = getUrlParam()
-    if(feedbackId) {
+    if (feedbackId) {
       const feedback = data.find(x => x.id == feedbackId);
-      if(feedback) {
+      if (feedback) {
         setSelectedFeedback(feedback)
       }
     }
   }, [setSelectedFeedback])
 
-  if(!selectedFeedback) {
+  if (!selectedFeedback) {
     return <p>Feedback Bilgisi bulunamadı</p>
   }
 
-console.log(currentUser);
+  console.log(currentUser);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -57,31 +57,31 @@ console.log(currentUser);
       }
     }
     let updatedComments;
-      if(currentReply) {
-        updatedComments = selectedFeedback.comments.map(comment => {
-          if (comment.id === currentReply) {
-            const updatedReplies = Array.isArray(comment.replies) ? [...comment.replies, newReplyObj] : [newReplyObj];
-            return { ...comment, replies: updatedReplies };
-            }
-          return comment;
-          });
-      }else {
-        updatedComments = [...selectedFeedback.comments, {
-          id: crypto.randomUUID(),
-          content: text,
-          user: {
-            image: currentUser.image,
-            name: currentUser.name,
-            username: currentUser.username,
-          },
-          replies: []
-        }];
-      }
+    if (currentReply) {
+      updatedComments = selectedFeedback.comments.map(comment => {
+        if (comment.id === currentReply) {
+          const updatedReplies = Array.isArray(comment.replies) ? [...comment.replies, newReplyObj] : [newReplyObj];
+          return { ...comment, replies: updatedReplies };
+        }
+        return comment;
+      });
+    } else {
+      updatedComments = [...selectedFeedback.comments, {
+        id: crypto.randomUUID(),
+        content: text,
+        user: {
+          image: currentUser.image,
+          name: currentUser.name,
+          username: currentUser.username,
+        },
+        replies: []
+      }];
+    }
 
     const updatedFeedback = { ...selectedFeedback, comments: updatedComments };
     setSelectedFeedback(updatedFeedback);
 
-    
+
     setText("");
     setCurrentReply(null);
   }
@@ -99,24 +99,24 @@ console.log(currentUser);
         <a href="/">Go back</a>
         <a href="#/edit-feedback">Edit Feedback</a>
       </div>
-      {responsive ? 
-      <div className="feedback-detail-item">
-        <div className='feedback-detail-content'>
-          <h3>{selectedFeedback.title}</h3>
-          <p>{selectedFeedback.description}</p>
-          <span className='category'>{selectedFeedback.category}</span>
-          <div className="feedback-detail-footer">
-            <span><img src="/public/img/up-icon.svg" alt="" />{selectedFeedback.upvotes}</span>
-            <span><img src="/public/img/comments-icon.svg" alt="" />{selectedFeedback.comments ? (selectedFeedback.comments?.length + selectedFeedback.comments?.map(y => y.replies?.length || 0).reduce((a, b) => a + b, 0)) : 0}</span>
+      {responsive ?
+        <div className="feedback-detail-item">
+          <div className='feedback-detail-content'>
+            <h3>{selectedFeedback.title}</h3>
+            <p>{selectedFeedback.description}</p>
+            <span className='category'>{selectedFeedback.category}</span>
+            <div className="feedback-detail-footer">
+              <span><img src="/public/img/up-icon.svg" alt="" />{selectedFeedback.upvotes}</span>
+              <span><img src="/public/img/comments-icon.svg" alt="" />{selectedFeedback.comments ? (selectedFeedback.comments?.length + selectedFeedback.comments?.map(y => y.replies?.length || 0).reduce((a, b) => a + b, 0)) : 0}</span>
+            </div>
           </div>
-        </div>
-      </div> :
+        </div> :
         (<div className="feedback-detail-item">
           <div className='feedback-detail-content'>
             <span><img src="/public/img/up-icon.svg" alt="" />{selectedFeedback.upvotes}</span>
             <div>
-               <h3>{selectedFeedback.title}</h3>
-                <p>{selectedFeedback.description}</p>
+              <h3>{selectedFeedback.title}</h3>
+              <p>{selectedFeedback.description}</p>
               <span className='feedback-detail-category'>{selectedFeedback.category}</span>
             </div>
             <span><img src="/public/img/comments-icon.svg" alt="" />{selectedFeedback.comments ? (selectedFeedback.comments?.length + selectedFeedback.comments?.map(y => y.replies?.length || 0).reduce((a, b) => a + b, 0)) : 0}</span>
@@ -127,21 +127,21 @@ console.log(currentUser);
       <div className="comments-card">
         <h2>{selectedFeedback.comments ? (selectedFeedback.comments?.length + selectedFeedback.comments?.map(y => y.replies?.length || 0).reduce((a, b) => a + b, 0)) : 0} Comments</h2>
         <ul className='comment-list' >
-        {selectedFeedback.comments.map((x, i) => 
-          <li className='comment-item' key={i}>
-            <div className='comment-header'>
-              <img src={x.user.image} alt="" />
-              <div className='user-info'>
-                <h6>{x.user.name}</h6>
-                <span>@{x.user.username}</span>
+          {selectedFeedback.comments.map((x, i) =>
+            <li className='comment-item' key={i}>
+              <div className='comment-header'>
+                <img src={x.user.image} alt="" />
+                <div className='user-info'>
+                  <h6>{x.user.name}</h6>
+                  <span>@{x.user.username}</span>
+                </div>
+                <button onClick={() => handleReply(x.id, x.user.username)}>Reply</button>
               </div>
-              <button onClick={() =>handleReply(x.id, x.user.username)}>Reply</button>
-            </div>
-            <p>{x.content}</p>
-            {x.replies && (
-              <ul>
-                {x.replies.map(y => 
-                  <li className='comment-item' key={y.id}>
+              <p>{x.content}</p>
+              {x.replies && (
+                <ul>
+                  {x.replies.map(y =>
+                    <li className='comment-item' key={y.id}>
                       <div className='comment-header'>
                         <img src={y.user?.image} alt="" style={{ borderRadius: '50%' }} />
                         <div className='user-info'>
@@ -151,12 +151,12 @@ console.log(currentUser);
                         <button>Reply</button>
                       </div>
                       <p>{y.content}</p>
-                  </li>
-                )}
-              </ul>
-            )}
-          </li>
-        )}
+                    </li>
+                  )}
+                </ul>
+              )}
+            </li>
+          )}
         </ul>
       </div>
       <div className="add-comment">
