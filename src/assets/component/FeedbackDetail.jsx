@@ -11,6 +11,21 @@ export default function FeedbackDetail() {
   const [selectedFeedback, setSelectedFeedback] = useState(null);
   const [text , setText] = useState("")
   const [currentReply, setCurrentReply] = useState(null);
+  const [responsive, setResponsive] = useState(window.innerWidth < 525)
+
+
+  useEffect(() => {
+    const handleResize = () => {
+      setResponsive(window.innerWidth < 525);
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize()
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     const feedbackId = getUrlParam()
@@ -84,8 +99,8 @@ console.log(currentUser);
         <a href="/">Go back</a>
         <a href="#/edit-feedback">Edit Feedback</a>
       </div>
-
-      <div className="feedback-card">
+      {responsive ? 
+      <div className="feedback-detail-item">
         <div className='feedback-detail-content'>
           <h3>{selectedFeedback.title}</h3>
           <p>{selectedFeedback.description}</p>
@@ -95,7 +110,20 @@ console.log(currentUser);
             <span><img src="/public/img/comments-icon.svg" alt="" />{selectedFeedback.comments ? (selectedFeedback.comments?.length + selectedFeedback.comments?.map(y => y.replies?.length || 0).reduce((a, b) => a + b, 0)) : 0}</span>
           </div>
         </div>
-      </div>
+      </div> :
+        (<div className="feedback-detail-item">
+          <div className='feedback-detail-content'>
+            <span><img src="/public/img/up-icon.svg" alt="" />{selectedFeedback.upvotes}</span>
+            <div>
+               <h3>{selectedFeedback.title}</h3>
+                <p>{selectedFeedback.description}</p>
+              <span className='feedback-detail-category'>{selectedFeedback.category}</span>
+            </div>
+            <span><img src="/public/img/comments-icon.svg" alt="" />{selectedFeedback.comments ? (selectedFeedback.comments?.length + selectedFeedback.comments?.map(y => y.replies?.length || 0).reduce((a, b) => a + b, 0)) : 0}</span>
+          </div>
+        </div>)
+      }
+
       <div className="comments-card">
         <h2>{selectedFeedback.comments ? (selectedFeedback.comments?.length + selectedFeedback.comments?.map(y => y.replies?.length || 0).reduce((a, b) => a + b, 0)) : 0} Comments</h2>
         <ul className='comment-list' >
