@@ -2,7 +2,15 @@ import "../../reset.css"
 import "../css/editfeedback.css"
 import { DataContext } from "../../App";
 import { useContext } from "react";
+
+
 export default function EditFeedback() {
+
+  function deleteData(id) {
+    const newData = data.filter(x => x.id !== id);
+    setData(newData); // Yeni filtrelenmiş diziyi setData ile güncelleyin
+  }
+  
 
   const { data, setData } = useContext(DataContext)
   console.log(data)
@@ -77,6 +85,19 @@ export default function EditFeedback() {
               <button type="submit" className="addfeedbackBtn">Save Changes</button>
               <button type="button" onClick={() => history.back()} className="cancelBtn">Cancel</button>
               <button type="button" className="deleteBtn">Delete</button>
+            </div>
+            <div className="feedback-footer-tablet">
+              <div>
+                <button onClick={() => deleteData(data.id)} type="button" className="deleteBtn">Delete</button>
+              </div>
+              <div>
+                <button type="button" onClick={() => history.back()} className="cancelBtn">Cancel
+
+                </button>
+                <button type="submit" className="addfeedbackBtn">Save Changes
+
+                </button>
+              </div>
             </div>
           </form>
         </div>
