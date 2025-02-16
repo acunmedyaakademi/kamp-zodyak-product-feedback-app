@@ -7,11 +7,14 @@ function getUrlParam() {
 }
 
 export default function FeedbackDetail() {
-  const { data, currentUser, setCurrentUser } = useContext(DataContext)
+  const { data, setData, currentUser, setCurrentUser } = useContext(DataContext)
   const [selectedFeedback, setSelectedFeedback] = useState(null);
   const [text , setText] = useState("")
   const [currentReply, setCurrentReply] = useState(null);
   const [responsive, setResponsive] = useState(window.innerWidth < 525)
+  const maxCharcters = 250;
+  const remainingChars = maxCharcters - text.length
+  
 
 
   useEffect(() => {
@@ -35,13 +38,30 @@ export default function FeedbackDetail() {
         setSelectedFeedback(feedback)
       }
     }
-  }, [setSelectedFeedback])
+  }, [data])
+
+  function handleUpvotes(id) {
+    if (currentUser.myUpvotes.includes(id)) {
+      data.find(x => x.id === id).upvotes--;
+      currentUser.myUpvotes = currentUser.myUpvotes.filter(x => x !== id);
+    } else {
+      data.find(x => x.id === id).upvotes++;
+      currentUser.myUpvotes.push(id);
+    }
+  
+    setCurrentUser({ ...currentUser });
+    setData([...data]);
+  }
+  
 
   if (!selectedFeedback) {
     return <p>Feedback Bilgisi bulunamadı</p>
   }
 
+<<<<<<< HEAD
   console.log(currentUser);
+=======
+>>>>>>> 95acaeb41be30ef443083f21fc9b3a4d998b5f68
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -99,6 +119,7 @@ export default function FeedbackDetail() {
         <a href="/">Go back</a>
         <a href="#/edit-feedback">Edit Feedback</a>
       </div>
+<<<<<<< HEAD
       {responsive ?
         <div className="feedback-detail-item">
           <div className='feedback-detail-content'>
@@ -109,11 +130,22 @@ export default function FeedbackDetail() {
               <span><img src="/public/img/up-icon.svg" alt="" />{selectedFeedback.upvotes}</span>
               <span><img src="/public/img/comments-icon.svg" alt="" />{selectedFeedback.comments ? (selectedFeedback.comments?.length + selectedFeedback.comments?.map(y => y.replies?.length || 0).reduce((a, b) => a + b, 0)) : 0}</span>
             </div>
+=======
+      {responsive ? 
+      <div className="feedback-detail-item">
+        <div className='feedback-detail-content'>
+          <h3>{selectedFeedback.title}</h3>
+          <p>{selectedFeedback.description}</p>
+          <span className='category'>{selectedFeedback.category}</span>
+          <div className="feedback-detail-footer">
+            <span onClick={() => handleUpvotes(selectedFeedback.id)}><img src="/public/img/up-icon.svg" alt="" />{selectedFeedback.upvotes}</span>
+            <span><img src="/public/img/comments-icon.svg" alt="" />{selectedFeedback.comments ? (selectedFeedback.comments?.length + selectedFeedback.comments?.map(y => y.replies?.length || 0).reduce((a, b) => a + b, 0)) : 0}</span>
+>>>>>>> 95acaeb41be30ef443083f21fc9b3a4d998b5f68
           </div>
         </div> :
         (<div className="feedback-detail-item">
           <div className='feedback-detail-content'>
-            <span><img src="/public/img/up-icon.svg" alt="" />{selectedFeedback.upvotes}</span>
+            <span onClick={() => handleUpvotes(selectedFeedback.id)}><img src="/public/img/up-icon.svg" alt="" />{selectedFeedback.upvotes}</span>
             <div>
               <h3>{selectedFeedback.title}</h3>
               <p>{selectedFeedback.description}</p>
@@ -164,8 +196,8 @@ export default function FeedbackDetail() {
         <form onSubmit={handleSubmit}>
           <textarea name="message" value={text} onChange={(e) => setText(e.target.value)} rows={2} placeholder='Type your comment here'></textarea>
           <div className='add-comment-footer'>
-            <p>250 Characters left</p>
-            <button>Post Comment</button>
+            <p>{remainingChars} Characters left</p>
+            <button disabled={remainingChars < 0}>Post Comment</button>
           </div>
         </form>
       </div>
