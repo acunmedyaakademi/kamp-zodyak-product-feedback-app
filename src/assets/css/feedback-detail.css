@@ -293,7 +293,32 @@
   }
 }
 @media(min-width: 1024px) {
+  .feedback-detail-header {
+    /* a:last-child:hover {
+      background: #7C91F9;
+    } */
+  }
   .feedback-detail-container {
-    width: 730px;
+    max-width: 730px;
+  }
+  .feedback-detail-item{
+    .feedback-detail-content{
+      span::first-child:hover {
+        
+      }
+    }
+  }
+  .comments-card {
+    .comment-item {
+      p {
+        font-size: 15px;
+      }
+      .comment-header{
+        button {
+          cursor: pointer;
+        }
+      }
+    }
+
   }
 }
