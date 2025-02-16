@@ -1,0 +1,187 @@
+.header {
+  width: 100%;
+  background: radial-gradient(128.88% 128.88% at 80% -10%,
+      #E84D70 0%,
+      #A337F6 50%,
+      #28A7ED 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 24px;
+  padding-block: 18px;
+}
+
+.header h1 {
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 21.68px;
+  letter-spacing: -0.19px;
+  color: rgba(255, 255, 255, 1);
+}
+
+.header h3 {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 18.79px;
+  letter-spacing: 0px;
+  color: rgba(255, 255, 255, 1);
+  opacity: 75%;
+
+}
+
+/* Menü Açma Butonu */
+.menu-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 10½;
+  right: -300px;
+  width: 300px;
+  height: 100%;
+  background: rgba(247, 248, 253, 1);
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+  transition: right 0.3s ease-in-out;
+  z-index: 1001;
+}
+
+.sidebar.open {
+  right: 1px;
+}
+
+
+/* Sidebar İçerik */
+.sidebar-content {
+  padding: 20px;
+}
+
+/* Kategori Butonları */
+.tags {
+  background: rgba(255, 255, 255, 1);
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 24px;
+  margin-top: 24px;
+}
+
+.tags button {
+  border: none;
+  padding: 8px 12px;
+  background: rgba(242, 244, 255, 1);
+  border-radius: 10px;
+  cursor: pointer;
+  color: rgba(70, 97, 230, 1);
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 18.79px;
+  letter-spacing: 0px;
+
+}
+
+.tags .active {
+  background: #3b82f6;
+  color: white;
+}
+
+/* Roadmap */
+
+.header-road-map {
+  background: rgba(255, 255, 255, 1);
+  border-radius: 10px;
+  margin-top: 24px;
+  padding-inline: 24px;
+  padding-block: 24px;
+}
+
+.road-map-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h3 {
+    color: rgba(58, 67, 116, 1);
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 26.01px;
+    letter-spacing: -0.25px;
+  }
+
+  a {
+    font-family: Jost;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 18.79px;
+    letter-spacing: 0px;
+    text-decoration: underline;
+    text-decoration-style: solid;
+    text-decoration-thickness: Auto;
+    color: #3b82f6;
+  }
+}
+
+.roadmap {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.roadmap li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 23.12px;
+  letter-spacing: 0px;
+  color: rgba(100, 113, 150, 1);
+
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.planned {
+  background: orange;
+}
+
+.in-progress {
+  background: purple;
+}
+
+.live {
+  background: blue;
+}
+
+.count {
+  margin-left: auto;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 23.12px;
+  letter-spacing: 0px;
+  text-align: right;
+  color: rgba(100, 113, 150, 1);
+}
+
+/* overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
