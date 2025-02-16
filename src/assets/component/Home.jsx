@@ -9,6 +9,7 @@ export default function Home() {
   const { data, setData, currentUser, setCurrentUser } = useContext(DataContext)
   const [sortBy, setSortBy] = useState("Most Upvotes");
   const [responsive, setResponsive] = useState(window.innerWidth < 525)
+  
 
   useEffect(() => {
     const handleResize = () => {
@@ -16,6 +17,7 @@ export default function Home() {
     };
 
     window.addEventListener("resize", handleResize);
+    handleResize()
 
     return () => {
       window.removeEventListener("resize", handleResize);
@@ -58,6 +60,12 @@ export default function Home() {
     <div className="home-container">
       <Header selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
       <div className="input-group">
+        {responsive &&
+         (<div>
+          <img src="/public/img/suggestion-icon.svg" alt="" />
+          <span>{data.length}</span>
+         </div>)
+        }
         <h5>Sort by :</h5>
         <select name="" onChange={handleSort}>
           <option value="Most Upvotes">Most Upvotes</option>
@@ -67,8 +75,9 @@ export default function Home() {
       </div>
       {data?.length ?
         <div className="feedbacks-list">
-          {data?.map((x, i) =>
-          (<div className="feedback-item" key={i}>
+          {data?.map((x,i) => 
+          {responsive ?
+           (<div className="feedback-item"  key={i}>
             <div className='feedback-content'>
               <h3>{x.title}</h3>
               <p>{x.description}</p>
@@ -78,7 +87,13 @@ export default function Home() {
                 <span onClick={() => openFeedback(x)}><img src="/public/img/comments-icon.svg" alt="" />{x.comments ? (x.comments?.length + x.comments?.map(y => y.replies?.length || 0).reduce((a, b) => a + b, 0)) : 0}</span>
               </div>
             </div>
-          </div>)
+          </div>) : (
+            <div>
+              
+            </div>
+          )
+           }
+          
           )}
         </div>
         :
