@@ -61,17 +61,10 @@ export default function Home() {
       <Header selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
       <div className="input-group">
         {responsive &&
-<<<<<<< HEAD
-          (<div>
-            <img src="/public/img/suggestion-icon.svg" alt="" />
-            <span>{data.length}</span>
-          </div>)
-=======
          (<div className='home-suggestions'>
             <img src="/public/img/suggestion-icon.svg" alt="" />
             <span>{data.length} Suggestions</span>
          </div>)
->>>>>>> 95acaeb41be30ef443083f21fc9b3a4d998b5f68
         }
         <h5>Sort by :</h5>
         <select name="" onChange={handleSort}>
