@@ -3,7 +3,6 @@ import { DataContext } from '../../App.jsx';
 import { useContext, useEffect, useState } from 'react';
 import { Header } from './header.jsx';
 
-
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const { data, setData, currentUser, setCurrentUser } = useContext(DataContext)
@@ -55,16 +54,20 @@ export default function Home() {
     setData(sortedData);
   }
 
+  const filteredData = selectedCategory === "All"
+    ? data
+    : data.filter(x => x.category.toLowerCase().includes(selectedCategory.toLowerCase()))
+
 
   return (
     <div className="home-container">
       <Header selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
       <div className="input-group">
         {responsive &&
-         (<div className='home-suggestions'>
+          (<div className='home-suggestions'>
             <img src="/public/img/suggestion-icon.svg" alt="" />
             <span>{data.length} Suggestions</span>
-         </div>)
+          </div>)
         }
         <h5>Sort by :</h5>
         <select name="" onChange={handleSort}>
@@ -73,28 +76,30 @@ export default function Home() {
         </select>
         <button onClick={() => window.location.hash = "#/new-feedback"}>+ Add Feedack</button>
       </div>
-      {data?.length ?
-        <div className="feedbacks-list">
-          {data?.map((x, i) =>
-            responsive ?
-              (<div className="feedback-item" key={i}>
-                <div className='feedback-content'>
-                  <h3>{x.title}</h3>
-                  <p>{x.description}</p>
-                  <span className='category'>{x.category}</span>
-                  <div className="home-feedback-footer">
-                    <span onClick={() => handleUpvotes(x.id)}><img src="/public/img/up-icon.svg" alt="" />{x.upvotes}</span>
-                    <span onClick={() => openFeedback(x)}><img src="/public/img/comments-icon.svg" alt="" />{x.comments ? (x.comments?.length + x.comments?.map(y => y.replies?.length || 0).reduce((a, b) => a + b, 0)) : 0}</span>
+      {filteredData.length ?
+        <div className="feedbacks-list" >
+
+          {
+            filteredData.map((x, i) =>
+              responsive ?
+                (<div className="feedback-item" key={i}>
+                  <div className='feedback-content'>
+                    <h3>{x.title}</h3>
+                    <p>{x.description}</p>
+                    <span className='category'>{x.category}</span>
+                    <div className="home-feedback-footer">
+                      <span onClick={() => handleUpvotes(x.id)}><img src="/public/img/up-icon.svg" alt="" />{x.upvotes}</span>
+                      <span onClick={() => openFeedback(x)}><img src="/public/img/comments-icon.svg" alt="" />{x.comments ? (x.comments?.length + x.comments?.map(y => y.replies?.length || 0).reduce((a, b) => a + b, 0)) : 0}</span>
+                    </div>
                   </div>
-                </div>
-              </div>) : (
-                <div>
+                </div>) : (
+                  <div>
 
-                </div>
-              )
+                  </div>
+                )
 
 
-          )}
+            )}
         </div>
         :
         <div className='not-found'>
