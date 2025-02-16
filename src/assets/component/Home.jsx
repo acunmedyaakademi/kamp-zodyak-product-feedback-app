@@ -1,6 +1,6 @@
 import '../css/home.css';
 import { DataContext } from '../../App.jsx';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Header } from './header.jsx';
 
 
@@ -8,7 +8,19 @@ export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const { data, setData, currentUser, setCurrentUser } = useContext(DataContext)
   const [sortBy, setSortBy] = useState("Most Upvotes");
+  const [responsive, setResponsive] = useState(window.innerWidth < 525)
 
+  useEffect(() => {
+    const handleResize = () => {
+      setResponsive(window.innerWidth < 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   function handleUpvotes(id) {
     if (currentUser.myUpvotes.includes(id)) {
@@ -56,7 +68,8 @@ export default function Home() {
       {data?.length ? 
         <div className="feedbacks-list">
           {data?.map((x,i) => 
-          <div className="feedback-item"  key={i}>
+          {responsive ?
+           (<div className="feedback-item"  key={i}>
             <div className='feedback-content'>
               <h3>{x.title}</h3>
               <p>{x.description}</p>
@@ -66,7 +79,13 @@ export default function Home() {
                 <span onClick={() => openFeedback(x)}><img src="/public/img/comments-icon.svg" alt="" />{x.comments ? (x.comments?.length + x.comments?.map(y => y.replies?.length || 0).reduce((a, b) => a + b, 0)) : 0}</span>
               </div>
             </div>
-          </div>
+          </div>) : (
+            <div>
+              
+            </div>
+          )
+           }
+          
           )}
         </div>
         : 

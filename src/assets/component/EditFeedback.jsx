@@ -41,9 +41,9 @@ export default function EditFeedback() {
               <h3>Update Status</h3>
               <p>Change feature state</p>
               <select name="" id="">
-                <option value="">Planned</option>
-                <option value="">In-Progress</option>
-                <option value="">Live</option>
+                <option value="Planned">Planned</option>
+                <option value="inprogress">In-Progress</option>
+                <option value="live">Live</option>
               </select>
             </div>
 

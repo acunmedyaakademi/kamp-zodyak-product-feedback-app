@@ -1,3 +1,7 @@
+body {
+    background-color: #f7f8fd;
+}
+
 .gobackBtn {
     display: flex;
     align-items: center;
@@ -13,77 +17,79 @@
 .feedback-container {
     background-color: #f7f8fd;
     padding: 0px 24px 77px 24px;
+    max-width: 540px;
+    margin-inline: auto;
 
+    h2 {
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 26.01px;
+        letter-spacing: -0.25px;
+        color: #3A4374;
+        padding-block: 24px;
+    }
+
+    h3 {
+        font-weight: 700;
+        font-size: 13px;
+        line-height: 18.79px;
+        letter-spacing: -0.18px;
+        color: #3A4374;
+        padding-bottom: 3px;
+    }
+
+    .feedback-form {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        background-color: white;
+        padding: 24px;
+        border-radius: 10px;
+    }
+
+
+
+    p {
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 18.79px;
+        letter-spacing: 0px;
+        color: #647196;
+        padding-bottom: 16px;
+    }
+
+    input,
+    select {
+        background-color: #f7f8fd;
+        border: none;
+        border-radius: 5px;
+        border-color: #4661E6;
+        outline-color: #4661E6;
+        width: 100%;
+        padding-inline: 16px;
+        height: 48px;
+        margin-bottom: 24px;
+    }
+
+    select {
+        background-image: url("/img/down-blue-icon.svg");
+        background-repeat: no-repeat;
+        background-position: calc(100% - 16px);
+        appearance: none;
+        /* Webkit ve Firefox tarayıcıları için */
+        -webkit-appearance: none;
+        /* Chrome, Safari, Opera */
+        -moz-appearance: none;
+        /* Firefox */
+
+    }
+
+    option {
+        background-color: white;
+    }
 }
 
-h2 {
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 26.01px;
-    letter-spacing: -0.25px;
-    color: #3A4374;
-    padding-block: 24px;
-}
-
-h3 {
-    font-weight: 700;
-    font-size: 13px;
-    line-height: 18.79px;
-    letter-spacing: -0.18px;
-    color: #3A4374;
-    padding-bottom: 3px;
-}
-
-.feedback-form {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    background-color: white;
-    padding: 24px;
-    border-radius: 10px;
-}
-
-
-
-p {
-    font-weight: 400;
-    font-size: 13px;
-    line-height: 18.79px;
-    letter-spacing: 0px;
-    color: #647196;
-    padding-bottom: 16px;
-}
-
-input,
-select {
-    background-color: #f7f8fd;
-    border: none;
-    border-radius: 5px;
-    border-color: #4661E6;
-    outline-color: #4661E6;
-    min-width: 279px;
-    padding-inline: 16px;
-    height: 48px;
-    margin-bottom: 24px;
-}
-
-select {
-    background-image: url("/img/down-blue-icon.svg");
-    background-repeat: no-repeat;
-    background-position: calc(100% - 16px);
-    appearance: none;
-    /* Webkit ve Firefox tarayıcıları için */
-    -webkit-appearance: none;
-    /* Chrome, Safari, Opera */
-    -moz-appearance: none;
-    /* Firefox */
-
-}
-
-option {
-    background-color: white;
-}
 
 .addnewBtn {
     position: absolute;
@@ -102,7 +108,7 @@ option {
 
 textarea {
     background-color: #f7f8fd;
-    width: 279px;
+    min-width: 100%;
     height: 120px;
     border-radius: 5px;
     border: none;
@@ -113,10 +119,6 @@ textarea {
 }
 
 .feedback-footer {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    justify-content: flex-end;
 
     button {
         border: none;
@@ -128,7 +130,7 @@ textarea {
         line-height: 18.79px;
         letter-spacing: 0px;
         text-align: center;
-        max-width: 279px;
+        width: 100%;
     }
 
     .addfeedbackBtn {
@@ -137,5 +139,18 @@ textarea {
 
     .cancelBtn {
         background-color: #3A4374;
+    }
+}
+
+@media (min-width: 540px) {
+
+    .feedback-footer {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .addnewBtn {
+        width: 56px;
+        height: 56px;
     }
 }
