@@ -2,8 +2,6 @@ import '../css/home.css';
 import { DataContext } from '../../App.jsx';
 import { useContext, useEffect, useState } from 'react';
 import { Header } from './header.jsx';
-import { X } from 'lucide-react';
-
 
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState('All');
