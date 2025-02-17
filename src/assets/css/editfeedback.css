@@ -113,10 +113,10 @@ textarea {
 }
 
 .feedback-footer {
-    display: flex;
-    flex-direction: column;
+    display: none;
+    flex-direction: row;
     gap: 16px;
-    justify-content: flex-end;
+    justify-content: space-around;
 
     button {
         border: none;
@@ -133,10 +133,47 @@ textarea {
 
     .addfeedbackBtn {
         background-color: #AD1FEA;
+        order: 2;
+        width: 144px;
     }
 
     .cancelBtn {
         background-color: #3A4374;
+        width: 93px;
+        order: 1;
+    }
+
+    .deleteBtn {
+        background-color: #D73737;
+        width: 93px;
+    }
+}
+
+.feedback-footer-tablet {
+    display: flex;
+    gap: 16px;
+    justify-content:space-between ;
+    button {
+        border: none;
+        padding: 12px 24px;
+        border-radius: 10px;
+        color: white;
+        font-weight: 700;
+        font-size: 13px;
+        line-height: 18.79px;
+        letter-spacing: 0px;
+        text-align: center;
+        max-width: 279px;
+    }
+
+    .addfeedbackBtn {
+        background-color: #AD1FEA;
+        margin-left: 16px;
+    }
+
+    .cancelBtn {
+        background-color: #3A4374;
+        order: 1;
     }
 
     .deleteBtn {
