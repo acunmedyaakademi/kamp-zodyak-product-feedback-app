@@ -1,0 +1,33 @@
+roadmap.css
+.roadmap-container {
+  min-width: 375px;
+  font-family: 'Jost', sans-serif;
+  background-color: #F7F8FD;
+  min-height: 100vh;
+}
+
+.header {
+  background-color: #373F68;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 24px;
+  border-radius: 0;
+}
+
+.logo-part {
+  display: grid;
+  gap: 3px;
+}
+
+.goBackBtn {
+  font-size: 13px;
+  line-height: 18.79px;
+  border: transparent;
+  background-color: transparent;
+  color: #fff;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
